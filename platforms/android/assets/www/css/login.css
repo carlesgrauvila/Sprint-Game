@@ -1,0 +1,37 @@
+  .logoLogin {
+      width:25%;
+      margin:30% auto;
+    }
+    .background-login {
+      background-image:url('../img/bg.png');
+      background-size: 100%;
+      background-repeat: repeat;
+    }
+    #buttonForm {
+      background-color:#35495D;
+      color:white;
+      font-weight: bold;
+    }
+    #registroText {
+      text-align:center; 
+      font-family: sans-serif;
+      color:#35495D;
+      text-decoration: none;
+    }
+    #registroText:hover {
+      color:#337AB7;
+    }
+    #registroForm {
+      background-color:#35495D;
+      color:white;
+      font-weight: bold;
+    }
+    #enviarEmail {
+      text-align:center; 
+      font-family: sans-serif;
+      color:#35495D;
+      text-decoration: none;
+    }
+    #enviarEmail:hover {
+      color:#337AB7;
+    }

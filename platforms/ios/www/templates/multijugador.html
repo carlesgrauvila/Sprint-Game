@@ -1,0 +1,132 @@
+<ion-view>
+    <ion-content  class="has-tabs-top padding background-login">
+      <ion-refresher on-refresh="doRefresh()">
+      </ion-refresher>
+      <ion-spinner icon="spiral"></ion-spinner>
+      <div class="global">
+        <button ng-if="pendents == null" class="button icon-left ion-star button button-block button-positive" id="botoCrearPartida" ng-click="createPartida()" style="background-color:#34495E; display:block;">     
+        Crear Partida
+        </button>
+        <button class="button icon-left ion-star button button-block button-positive" id="botoInvitar" ng-click="getAmics()" style="background-color:#34495E; display:none;">       
+        Invita a un amigo
+        </button>
+
+            <div id="listaMultijugador" class="list">
+                <div class="item item-divider">
+                Partidas pendientes por jugar
+              </div>
+                  <div class="item item-button-right" ng-repeat="pendent in pendents">
+                    {{pendent.nom}}
+                    <p style="float:right;">{{pendent.distancia}} m</p>
+                    <a class="button button-positive" href="#/juego/{{pendent.id}}" style="background-color:#34495E;">
+                        <i class="icon ion-ios-game-controller-b-outline" style="color:white;"></i>
+                      </a>
+                  </div>
+                  <div class="item item-button-right" ng-if="pendents==null">
+                      No tienes ninguna partida pendiente, crea una nueva!
+                  </div>
+                  <div class="item item-divider" ng-if="espera!=null">
+                    Partidas pendientes a que jueguen
+                  </div>
+                      <div class="item item-button-right" ng-repeat="esper in espera">
+                        {{esper.nom}}
+                        <p style="float:right;">{{esper.distancia}} m</p>
+                      </div>
+            </div>
+          
+        <div class="list padding_top" style="display:none" id="llistaAmics">
+            <div class="item item-button-right" ng-repeat="amic in amics | orderBy : 'nom'">
+              <p>{{amic.nom}}</p>
+              <button class="button button-positive" style="background-color:#34495E;" ng-click="afegirAmic('{{amic.nom}}', {{amic.id}})">
+                <i class="icon ion-ios-game-controller-b-outline" style="color:white;"></i>
+              </button>
+            </div>
+        </div>
+
+        <div class="list padding_top" id="lista2" style="display:none">
+            <div class="item centrar_nombre">
+              {{nomJug}}
+              <i class="icon ion-ios-game-controller-b"></i>
+              {{nom}}
+            </div>
+        </div>
+            <div class="row botonJugar">
+        </div>
+
+        <div class="padding-top" id="distancia" style="display:none">
+
+        <div class="card">
+          <div class="item item-divider textDistancia">
+            Introduce la distancia de la partida
+          </div>
+          <div class="item item-text-wrap">
+            <div class="list" id="range" style="display:none">
+                <div class="item range backgroundRage">
+                    <i class="icon ion-arrow-right-a"></i>
+                    <input type="range" name="distancia" ng-model="data.distancia">
+                    <i class="icon ion-flag"></i>
+                </div> 
+            </div>
+            <div class="row distanciaMetres">
+                <div class="col metres">
+                    {{data.distancia}}
+                </div>
+            </div>
+          </div>
+        </div>
+
+        </div>
+
+        <div class="padding-top">
+            <button class="button button-block backgroundButton" id="seguent" style="display:none" ng-click="crearPartida()">
+              Comenzar la partida
+            </button>
+            <button class="button button-block backgroundButton" id="enrere" style="display:none" ng-click="volverAtras()">
+                Volver atras
+            </button>
+        </div>
+      </div>
+    </ion-content>
+</ion-view>
+
+<style>
+     .padding_top{
+         padding-top: 5%;
+     }
+    .centrar_nombre{
+        text-align: center;
+    }
+    .backgroundButton{
+        background-color:#34495E;
+        color: white;
+    }
+    .backgroundButton:hover{
+        color:white;
+    }
+    .botonJugar{
+        text-align: center;
+        font-size: 30px;
+    }
+    .backgroundRage{
+        color:#34495E;
+    }
+    .distanciaMetres{
+        text-align: center;
+        font-size: 2em;
+    }
+    .metres:after{
+        content: 'm';
+    }
+    .textDistancia{
+        text-align: center;
+    }
+    .global { 
+      display:none;
+     }
+     .spinner-spiral {
+      position: absolute;
+        margin-top: 50%;
+        margin-left: 50%;
+        transform: translate(-50%, -50%);
+     }
+</style>

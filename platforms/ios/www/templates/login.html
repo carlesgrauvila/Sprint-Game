@@ -1,0 +1,46 @@
+<ion-view title="Login">
+      <ion-content class="background-login">
+          <div class="row responsive-ms">
+              <img class="logoLogin" src="./img/logo-spring.png">
+          </div>
+          <form id="form">
+	          <div class="list list-inset">
+	            <label class="item item-input" id="usuario" required>
+	              <input type="text" name="User[name]" placeholder="Usuario">
+	            </label>
+	            <label class="item item-input" id="contra" required>
+	              <input type="password" name="User[pass]" placeholder="Contrase&#xF1;a">
+	            </label>  
+	            <label id="registreInput" style="display:none;" class="item item-input">
+	              <input type="text" placeholder="Email" required> 
+	            </label>
+	          </div>
+          </form>
+          <div class="padding">
+               <button id="buttonForm" class="button button-block background-buton" ng-click="login()">
+                  Entrar
+                </button>
+                <button style="display:none;" id="registroForm" class="button button-block background-buton" ng-click="registre()">
+                  Registro
+                </button> 
+          </div>
+
+          <div class="row responsive-ms">
+            <div class="col col-100">
+                <a id="registroText" ng-click="showRegistre()">
+                    <p>Reg&#xED;strate en Sprint</p>
+                </a>
+            </div> 
+          </div> 
+
+          <div class="row responsive-ms">
+            <div class="col col-100">
+                <a id="enviarEmail" ng-click="showEmail()">
+                      <p>&#xBF; Has olvidado la contrase&#xF1;a ?</p>
+                </a>
+            </div> 
+          </div>
+
+
+      </ion-content>
+</ion-view>

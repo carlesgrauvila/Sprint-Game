@@ -1,0 +1,45 @@
+<ion-views>
+         <ion-tabs class="tabs-striped">
+
+		        <ion-tab title="Individual" href="#/app/tabs/individual">
+		          <ion-nav-view name="tabsContingutIndividual"></ion-nav-view>
+		        </ion-tab>
+		
+		        <ion-tab  title="Multijugador" badge="total" badge-style="badge-positive" href="#/app/tabs/multijugador">
+		          <ion-nav-view name="tabsContingutMultijugador"></ion-nav-view>
+		        </ion-tab>
+		        
+		        <ion-tab  title="Multijugador" hidden="true">
+		          <ion-nav-view name="tabsContingutPerfil"></ion-nav-view>
+		        </ion-tab>
+		
+        </ion-tab>
+
+      </ion-tabs>
+                 
+          
+</ion-view>
+
+<style>
+
+      .tab-nav{
+			background: #ECF0F1!important;
+		}
+      .tab-title {
+        color: #34495E!important;
+        font-weight: bold;
+      }
+      .tab-item i {
+	      display:none!important;
+      }
+      .tab-item {
+	      border-color:#34495E!important;
+      }
+      .tab-item .badge {
+      	right:5%!important;
+      }
+      .tabs .tab-item .badge {
+		background-color: #34495E!important;
+		color: #f8f8f8;
+	  }
+</style>

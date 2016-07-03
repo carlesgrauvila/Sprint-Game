@@ -1,0 +1,84 @@
+<ion-view>
+	<ion-content overflow-scroll="false" on-scroll="getScrollPosition()" class="background-login">
+    <div class="progress" style="position: absolute!important; background: #34495E!important; min-width: 100%!important; height:0px!important;"></div>
+		<div class="row nice" style="display:none;">
+			<div class="col-100 col">
+				<h1>¡ Buen trabajo !</h1>
+				<h4>Has realizado {{metros}} m en {{segons}} s</h4>
+				<a href="#/app/tabs/multijugador">Salir</a>
+			</div>
+		</div>
+    <div class="contador">
+      <p>{{contador}}</p>
+    </div>
+    <div class="">
+      <h1 class="stopContador">GO !</h1>
+    </div>
+	</ion-content>
+	<ion-footer-bar align-title="left" class="backgroundHeader">
+    <h1 class="button">{{heightRestant}} m</h1>
+  <div class="buttons pull-right">
+    <p class="button">{{segons}} s</p>
+  </div>
+</ion-footer-bar>
+</ion-view>
+<style>
+	.scroll {
+		height:{{heightTotal}}!important;
+	}
+	.backgroundHeader {
+		background-color:#34495E!important;
+	}
+	.nice {
+	    margin-top: 16%;
+	    text-align: center;
+	}
+
+@-webkit-keyframes heightCharge {
+  0% {
+    height:0%;
+  }
+  100% {
+    height:100%;
+  }
+}
+@keyframes heightCharge {
+  0% {
+    height:0%;
+  }
+  100% {
+    height:100%;
+  }
+}
+
+
+.contador  {
+  font-size:10em;
+  position: absolute;
+  margin-top: 78%;
+  left:50%;
+  color:black;
+  transform:translate(-50%, -50%);
+  -webkit-transform:translate(-50%, -50%);
+  -moz-transform:translate(-50%, -50%);
+}
+.stopContador {
+    text-align: center;
+    top: 1%;
+    position: absolute;
+    left: 50%;
+    transform:translate(-50%, -50%);
+  -webkit-transform:translate(-50%, -50%);
+  -moz-transform:translate(-50%, -50%);
+    font-size: 90px!important;
+    display: none;
+}
+.progress {
+   -webkit-animation-name: heightCharge!important;
+   -webkit-animation-duration: 3.5s!important;
+   -moz-animation-name: heightCharge!important;
+   -moz-animation-duration: 3.5s!important;
+   animation-duration: 3.5s!important;
+   animation-name: heightCharge!important;
+}
+</style>

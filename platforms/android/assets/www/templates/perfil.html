@@ -1,0 +1,139 @@
+<ion-view>
+ 	<ion-content  class="has-tabs-top has-footer background-login" >
+ 		<ion-refresher on-refresh="doRefresh()">
+    	</ion-refresher>
+    	<ion-spinner icon="spiral"></ion-spinner>
+    	<div class="global">
+	 		<div class="row padding-top responsive-ms">
+	 			<div class="col-40">
+	 				<canvas class="demo dibuix" width="120" height="120">
+	 			</div>
+	 			<div class="col-60">
+	 				<div class="row responsive-ms">
+	 					<div class="col-50">
+		 					<div class="card">
+		 					<p class="headingcart">NIVEL</p>
+							  <div class="item item-text-wrap">
+							    <h4 class="infocartsheading">{{ nivell }}</h4>
+							  </div>
+							</div>
+						</div>
+						<div class="col-50">
+		 					<div class="card">
+		 					<p class="headingcart">PARTIDAS</p>
+							  <div class="item item-text-wrap">
+							    <h4 class="infocartsheading">{{ partidasJugadas }}</h4>
+							  </div>
+							</div>
+						</div>
+					</div>
+					<div class="row responsive-ms">
+						<div class="col-50">
+		 					<div class="card">
+		 					<p class="headingcart">GANADAS</p>
+							  <div class="item item-text-wrap">
+							    <h4 class="infocartsheading">{{ partidasGanadas }}</h4>
+							  </div>
+							</div>
+						</div>
+						<div class="col-50">
+		 					<div class="card">
+		 					<p class="headingcart">PERDIDAS</p>
+							  <div class="item item-text-wrap">
+							    <h4 class="infocartsheading">{{ partidasPerdidas }}</h4>
+							  </div>
+							</div>
+						</div>
+					</div>
+
+
+	 			</div>
+	 		</div>
+	 		<div class="list list-inset" ng-if="historial==null">
+		 		<div class="item" style="text-align:center;">
+		 			Aun no has jugado ninguna partida
+		 		</div>
+	 		</div>
+		 	<div ng-repeat="hist in historial" class="list list-inset" ng-if="historial!=null" >
+			    <div class="item">
+			      <div class="row">
+			      	<div class="col col-10 guanyada" ng-if="hist.jugador1 == hist.nomGuanyador">
+			      		<i class="ion-happy"></i>
+			      	</div>
+			      	<div class="col col-10 perduda" ng-if="hist.jugador1 != hist.nomGuanyador">
+			      		<i class="ion-sad"></i>
+			      	</div>
+			      	<div class="col col-40 center">
+			      		{{hist.jugador1}}
+			      	</div>
+			      	<div class="col col-40 center">
+			      		{{hist.jugador2}}
+			      	</div>
+			      	<div class="col col-10 guanyada" ng-if="hist.jugador2 == hist.nomGuanyador">
+			      		<i class="ion-happy"></i>
+			      	</div>
+			      	<div class="col col-10 perduda" ng-if="hist.jugador2 != hist.nomGuanyador">
+			      		<i class="ion-sad"></i>
+			      	</div>
+			      </div>
+			    </div>
+			</div>
+		</div>
+		    
+ 	</ion-content>
+</ion-view>
+
+<style type="text/css">
+	.center {
+		text-align: center;	
+	}
+	.guanyada i{
+		color: rgb(43, 119, 43);
+		font-size: 33px;
+		position: absolute;
+		top: 20px;
+	}
+	.perduda i{
+		color: rgb(175, 55, 55);
+		font-size: 33px;
+		position: absolute;
+		top: 20px;
+	}
+	.default {
+	background: #34495E;
+	border: 1px solid #34495E;	
+	border-radius: 5px;	
+	overflow: hidden;
+}
+.default div {
+	background-color:#34495E;
+}
+.dibuix{
+    width:60%;
+    margin: 50px 50%;
+    transform: translate(-50%, 0px);
+}
+.headingcart {
+	color: #34495E;
+    font-weight: bold;
+    font-size: 11px;
+    text-align: center;
+    margin: 0px;
+}
+.infocartsheading {
+	text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #34495E;
+}
+.global { 
+	display:none;
+ }
+ .spinner-spiral {
+ 	position: absolute;
+    margin-top: 50%;
+    margin-left: 50%;
+    transform: translate(-50%, -50%);
+ }
+</style>
+

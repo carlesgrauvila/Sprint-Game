@@ -1,0 +1,206 @@
+<style>
+	.backgroundHeader {
+		background-color:#34495E!important;
+	}
+	.button-icon { 
+		color:white!important;
+	}
+	</style>
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-stable backgroundHeader">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+	  
+	  <ion-nav-title>
+        <img alt="Sprint Logo" height="40" src="img/logo-spring.png">
+	  </ion-nav-title>
+	  
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-ios-keypad" ng-click="toggleLeft()">
+        </button>
+      </ion-nav-buttons>
+      <ion-nav-buttons side="right">
+            <button ng-click="toggleRight()" class="button button-icon icon ion-person"></button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  
+
+  </ion-side-menu-content>
+  <ion-side-menu side="left">
+    <ion-header-bar class="bar-stable">
+      <h1 class="title">Amigos</h1>
+    </ion-header-bar>
+    <ion-content>
+    	<ion-refresher on-refresh="doRefresh()">
+    	</ion-refresher>
+      <div class="list">
+
+        <div class="item item-input-inset" id="añadirUsuario" style="display:none;">
+          <label class="item-input-wrapper">
+            <input type="text" placeholder="Usuario" id="Useragregar">
+          </label>
+          <button class="button button-small" ng-click="sendNotiamic()">
+            Añadir
+          </button>
+        </div>
+        <div ng-if="amics==null && pendents==null && esperant==null">
+          <div class="item item-divider">
+            Añade a un amigo!
+          </div>
+        </div>
+        <div class="item item-button-right" ng-repeat="amic in amics">
+          {{amic.nom}}
+           <button class="button button-assertive" ng-click="eliminarAmic({{amic.idConsulta}})">
+            <i class="icon ion-trash-b" style="color:white;"></i>
+          </button>
+        </div>
+
+        <div ng-if="pendents!=null">
+          <div class="item item-divider">
+            Solicitud Amistad
+          </div>
+          <div class="item item-button-right" ng-repeat="pendent in pendents">
+            {{pendent.nom}}
+            <button class="button button-positive" ng-click="acceptarAmic({{pendent.idConsulta}})" style="background-color:#34495E;">
+              <i class="icon ion-android-person-add" style="color:white;"></i>
+            </button>
+          </div>
+        </div>
+
+        <div ng-if="esperant!=null">
+          <div class="item item-divider">
+            Solicitud Enviada
+          </div>
+          <div class="item item-button-right" ng-repeat="espera in esperant">
+            {{espera.nom}}
+          </div>
+        </div>
+
+    </div>
+    </ion-content>
+    <ion-footer-bar class="backgroundHeader">
+      <div class="buttons">
+         <button ng-click="showVistaAmic();" class="button icon ion-ios-plus-outline " style="color:white; background:transparent;"></button>
+      </div>
+      <div class="buttons pull-right">
+        <button ng-click="logout();" menu-close class="button icon ion-android-exit pull-right" style="color:white; background:transparent"></button>
+      </div>
+    </ion-footer-bar>
+  </ion-side-menu>
+
+
+
+  <ion-side-menu side="right">
+    <ion-header-bar class="bar-stable">
+      <h1 class="title">Perfil</h1>
+    </ion-header-bar>
+    <ion-content>
+    <ion-refresher on-refresh="doRefreshProfile()" >
+      </ion-refresher>
+      <ion-spinner icon="spiral"></ion-spinner>
+      <div class="global">
+        <div class="row responsive-ms">
+            <div class="col-100 col">
+              <canvas class="demo dibuix" width="100" height="100">
+            </div>
+          </div>
+          <div class="row responsive-ms">
+            <div class="col-50">
+              <div class="card">
+              <p class="headingcart">GANADAS</p>
+                <div class="item item-text-wrap">
+                  <h4 class="infocartsheading">{{ partidasGanadas }}</h4>
+                </div>
+              </div>
+            </div>
+            <div class="col-50">
+              <div class="card">
+              <p class="headingcart">PERDIDAS</p>
+                <div class="item item-text-wrap">
+                  <h4 class="infocartsheading">{{ partidasPerdidas }}</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+      <div class="list list-inset"  ng-repeat="hist in historial | limitTo: 7" ng-if="historial!=null">
+          <div class="item perduda" ng-if="hist.jugador1 != hist.nomGuanyador">
+            <i class="ion-sad"></i>
+            <p ng-if="hist.jugador1 == nomPersonal">{{hist.jugador2}}</p>
+            <p ng-if="hist.jugador2 == nomPersonal">{{hist.jugador1}}</p>
+          </div>
+          <div class="item guanyada" ng-if="hist.jugador1 == hist.nomGuanyador">
+            <i class="ion-happy" ></i>
+            <p ng-if="hist.jugador1 == nomPersonal">{{hist.jugador2}}</p>
+            <p ng-if="hist.jugador2 == nomPersonal">{{hist.jugador1}}</p>
+          </div>
+      </div>
+      <div class="list list-inset" ng-if="historial==null">
+         <div class="item" >
+          <p>Aun no has jugado ninguna partida</p>
+        </div>
+     </div>
+</div>
+    </ion-content>
+  </ion-side-menu>
+
+
+
+
+</ion-side-menus>
+
+<style>
+    .guanyada i{
+    color: rgb(43, 119, 43);
+    font-size: 33px;
+    position:absolute;
+    top:9px;
+  }
+  .guanyada p {
+    margin-left: 36px;
+  }
+  .perduda i{
+    color: rgb(175, 55, 55);
+    font-size: 33px;
+    position:absolute;
+    top:9px;
+  }
+  .perduda p {
+    margin-left: 36px;
+  }
+  .dibuix{
+    width:60%;
+    margin: 0px 50%;
+    transform:translate(-50%, 0px);
+  -webkit-transform:translate(-50%, 0px);
+  -moz-transform:translate(-50%, 0px);
+  }
+  .headingcart {
+  color: white;
+  background: #34495E;
+    font-weight: bold;
+    font-size: 11px;
+    text-align: center;
+    margin: 0px;
+}
+.infocartsheading {
+  text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #34495E;
+}
+ .spinner-spiral {
+    position: absolute;
+    margin-top: 50%;
+    margin-left: 50%;
+    transform:translate(-50%, -50%);
+  -webkit-transform:translate(-50%, -50%);
+  -moz-transform:translate(-50%, -50%);
+ }
+ .global {
+  display:none;
+ }
+</style>
+
